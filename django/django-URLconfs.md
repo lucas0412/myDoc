@@ -38,3 +38,16 @@ Names Groups
 上面的範例是使用 *無命名regexp群組* 來獲得URL中傳遞近來的參數，在更進階的使用中，使用 *命名的regexp群組* 來獲取URL是可能的，並且將其以關鍵字的方式當作參數傳入
 
 python中，命名regexp群組的語法是`(?P<name>pattern)`，其中name是變數名稱，pattern是模板
+
+    urlpatterns = patterns('',
+        (r'^articles/2003/$', 'news.views.special_case_2003'),
+        (r'^articles/(?P<year>\d{4})/$', 'news.views.year_archive'),
+        (r'^articles/(?P<year>\d{4})/(?P<month>\d{2})/$', 'news.views.month_archive'),
+        (r'^articles/(?P<year>\d{4})/(?P<month>\d{2})/(?P<day>\d{2})/$', 'news.views.article_detail'),
+    )
+
+一個形式為`/articles/2005/03`的要求，將會以下列的方式呼叫函式
+
+    news.views.month_archive(request, year='2005', month='03')
+
+
