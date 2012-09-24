@@ -71,8 +71,9 @@ Django provide a shortcut function, with
 2. render it
 3. return a  string
 
+for example
 
     from django.template.loader import render_to_string
     rendered = render_to_string('my_template.html', { 'foo': 'bar' })
 
-
+.
